@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+            integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+            crossorigin="anonymous"
+        />
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            .img-item {
+                margin-right: 20px;
+                position: relative;
+            }
+
+            img {
+                width: 100%;
+                border: 6px solid transparent;
+                border-radius: 50%;
+            }
+            .wrap-img {
+                justify-content: center;
+                margin-top: 10rem;
+            }
+            .border {
+                position: absolute;
+                width: 100%;
+                top: 50%;
+                border: 3px solid #333 !important;
+            }
+            .border::before {
+                content: "";
+                width: 246px;
+                height: 123px;
+                background-color: #f00;
+                position: absolute;
+                left: -3.5px;
+                top: -117px;
+                display: block;
+                border-radius: 246px 246px 0 0;
+                border: 6px solid #333;
+            }
+            .border::after {
+                content: "";
+                width: 246px;
+                height: 123px;
+                background-color: #eee;
+                position: absolute;
+                left: -3px;
+                top: 0px;
+                display: block;
+                border-radius: 0 0 246px 246px;
+                border: 6px solid #333;
+            }
+            .round {
+                position: absolute;
+                width: 30px;
+                height: 30px;
+                top: 45%;
+                left: 43%;
+                background-color: #333;
+                border-radius: 50%;
+            }
+            .round::after {
+                content: "";
+                width: 20px;
+                height: 20px;
+                background-color: #eee;
+                position: absolute;
+                left: 18%;
+                top: 16.5%;
+                display: block;
+                border-radius: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="wrap-img d-flex">
+                <div class="img-item">
+                    <img src="/images/1.png" alt="" />
+                </div>
+                <div class="img-item">
+                    <img src="/images/2.png" alt="" />
+                </div>
+                <div class="img-item">
+                    <img src="/images/3.png" alt="" />
+                </div>
+                <div class="img-item">
+                    <img src="/images/4.png" alt="" />
+                </div>
+            </div>
+        </div>
+
+        <script src="./js/jquery-3.6.0.js"></script>
+        <script>
+            $("img").click(function () {
+                console.log(this);
+                $("img").css("border", "3px solid transparent");
+                $(".border").remove();
+                $(".round").remove();
+                $(this)
+                    .before("<div class='border'></div>")
+                    .after("<div class='round'></div>");
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+            integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+            crossorigin="anonymous"
+        />
+        <style>
+            .container {
+                margin-top: 100px;
+            }
+            .form-check {
+                border: 1px solid #333;
+                padding: 10px 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="form-check">
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault1"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                    1 checkbox
+                </label>
+            </div>
+            <div class="form-check">
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckChecked2"
+                />
+                <label class="form-check-label" for="flexCheckChecked">
+                    2 checkbox
+                </label>
+            </div>
+            <div class="form-check">
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault3"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                    3 checkbox
+                </label>
+            </div>
+            <div class="form-check">
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckChecked4"
+                />
+                <label class="form-check-label" for="flexCheckChecked">
+                    4 checkbox
+                </label>
+            </div>
+        </div>
+
+        <script src="./js/jquery-3.6.0.js"></script>
+        <script>
+            $("input").click(function () {
+                // console.log(this);
+                for (let i = 0; i < $("input").length; i++) {
+                    if ($("input")[i].checked === false) {
+                        $("input").eq(i).parent().attr("style", "");
+                    }
+                    if ($("input")[i].checked === true) {
+                        $(this).parent().css("background-color", "#888");
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
