@@ -19,13 +19,27 @@
                 border: 1px solid #333;
                 padding: 10px 30px;
             }
+            .checkbox-all-wrap {
+                margin-bottom: 50px;
+            }
         </style>
     </head>
     <body>
         <div class="container">
+            <div class="form-check checkbox-all-wrap">
+                <input
+                    class="form-check-input checkbox-all"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault1"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                    checkbox-all
+                </label>
+            </div>
             <div class="form-check">
                 <input
-                    class="form-check-input"
+                    class="form-check-input check-input"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault1"
@@ -36,7 +50,7 @@
             </div>
             <div class="form-check">
                 <input
-                    class="form-check-input"
+                    class="form-check-input check-input"
                     type="checkbox"
                     value=""
                     id="flexCheckChecked2"
@@ -47,7 +61,7 @@
             </div>
             <div class="form-check">
                 <input
-                    class="form-check-input"
+                    class="form-check-input check-input"
                     type="checkbox"
                     value=""
                     id="flexCheckDefault3"
@@ -58,7 +72,7 @@
             </div>
             <div class="form-check">
                 <input
-                    class="form-check-input"
+                    class="form-check-input check-input"
                     type="checkbox"
                     value=""
                     id="flexCheckChecked4"
@@ -71,30 +85,55 @@
 
         <script src="./js/jquery-3.6.0.js"></script>
         <script>
+            $(".checkbox-all").click(function () {
+                console.log($($(this).prop("checked")));
+                if ($(this).prop("checked")) {
+                    $("input[type='checkbox'").prop("checked", true);
+                } else {
+                    $("input[type='checkbox'").prop("checked", false);
+                }
+            });
             $("input").click(function () {
                 const len = $("input").length;
                 for (let i = 0; i < len; i++) {
                     if ($("input")[i].checked === true) {
-                        $(this).parent().css("background-color", "#888");
+                        $($("input")[i])
+                            .parent()
+                            .css("background-color", "#888");
                     }
                 }
 
-                if ($("input")[0].checked === false) {
-                    $("input").eq(0).parent().attr("style", "");
-                    console.log(0);
-                }
-                if ($("input")[1].checked === false) {
-                    $("input").eq(1).parent().attr("style", "");
-                    console.log(1);
-                }
-                if ($("input")[2].checked === false) {
-                    $("input").eq(2).parent().attr("style", "");
-                    console.log(2);
-                }
-                if ($("input")[3].checked === false) {
-                    $("input").eq(3).parent().attr("style", "");
-                    console.log(3);
-                }
+                $("input").each((index, elem) => {
+                    //
+                    if ($("input")[index].checked === false) {
+                        $("input").eq([index]).parent().attr("style", "");
+                        $(".checkbox-all")
+                            .prop("checked", false)
+                            .parent()
+                            .attr("style", "");
+                    }
+                });
+
+                // if ($("input")[0].checked === false) {
+                //     $("input").eq(0).parent().attr("style", "");
+                //     // console.log(0);
+                // }
+                // if ($("input")[1].checked === false) {
+                //     $("input").eq(1).parent().attr("style", "");
+                //     // console.log(1);
+                // }
+                // if ($("input")[2].checked === false) {
+                //     $("input").eq(2).parent().attr("style", "");
+                //     // console.log(2);
+                // }
+                // if ($("input")[3].checked === false) {
+                //     $("input").eq(3).parent().attr("style", "");
+                //     // console.log(3);
+                // }
+                // if ($("input")[4].checked === false) {
+                //     $("input").eq(4).parent().attr("style", "");
+                //     // console.log(3);
+                // }
             });
         </script>
     </body>
