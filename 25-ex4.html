@@ -18,6 +18,8 @@
             .img-item {
                 margin-right: 20px;
                 position: relative;
+                /* transform: rotate(0deg); */
+                transition: 0.5s ease;
             }
 
             img {
@@ -101,14 +103,18 @@
 
         <script src="./js/jquery-3.6.0.js"></script>
         <script>
+            $(".img-item").click(function () {
+                $(this).css("transform", `rotate(360deg)`);
+            });
             $("img").click(function () {
-                console.log(this);
+                // console.log(this);
                 $("img").css("border", "3px solid transparent");
                 $(".border").remove();
                 $(".round").remove();
                 $(this)
                     .before("<div class='border'></div>")
                     .after("<div class='round'></div>");
+                $(".img-item").attr("style", "");
             });
         </script>
     </body>
