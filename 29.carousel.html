@@ -57,6 +57,27 @@
             /* .slider-dots-area li:nth-child(1) {
                 background: #fff;
             } */
+
+            .arrow-r {
+                width: 30px;
+                height: 30px;
+                background-color: #000;
+                opacity: 0.7;
+                border-radius: 0 100% 100% 0;
+                position: absolute;
+                top: 50%;
+                right: 1%;
+            }
+            .arrow-l {
+                width: 30px;
+                height: 30px;
+                background-color: #000;
+                opacity: 0.7;
+                border-radius: 100% 0 0 100%;
+                position: absolute;
+                top: 50%;
+                left: 1%;
+            }
         </style>
     </head>
     <body>
@@ -86,6 +107,9 @@
                 <li class="liBtn"></li>
                 <li class="liBtn"></li>
             </ul>
+
+            <div class="arrow-r arrow"></div>
+            <div class="arrow-l arrow"></div>
         </div>
         <script src="./js/jquery-3.6.0.js"></script>
         <script>
@@ -96,6 +120,21 @@
                 len = $(this).index() * -800 + "px";
 
                 $(".wrap-img").css("transform", `translateX(${len})`);
+            });
+            let index = 1;
+            $(".arrow-r").click(function () {
+                console.log(this);
+                maxWidth = $(".wrap-img").width();
+                imgWidth = -maxWidth / $(".liBtn").length;
+                console.log(imgWidth);
+                $(".wrap-img").css(
+                    "transform",
+                    `translateX(${imgWidth * index + "px"})`
+                );
+
+                index++;
+
+                console.log(index);
             });
         </script>
     </body>
