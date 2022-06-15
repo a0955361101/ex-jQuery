@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+            integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+            crossorigin="anonymous"
+        />
+        <style>
+            .wrap {
+                width: 800px;
+                height: 500px;
+                overflow: hidden;
+                position: relative;
+            }
+            .wrap-img {
+                width: 500%;
+                padding: 0;
+                list-style: none;
+                display: flex;
+                /* transform: translateX(0px); */
+                transition: 0.5s ease;
+            }
+            .wrap-img li {
+                flex-basis: 0;
+                flex-grow: 1;
+            }
+            .wrap-img li img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .slider-dots-area {
+                list-style: none;
+                padding: 0;
+                /* margin: 0; */
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                position: absolute;
+                bottom: 0;
+            }
+
+            .slider-dots-area li {
+                width: 25px;
+                height: 25px;
+                border: 1px solid #fff;
+                margin: 0 5px;
+                border-radius: 50%;
+            }
+
+            /* .slider-dots-area li:nth-child(1) {
+                background: #fff;
+            } */
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <ul class="wrap-img">
+                <li>
+                    <img src="/imgs/slide1.jpg" alt="" />
+                </li>
+                <li>
+                    <img src="/imgs/slide2.jpg" alt="" />
+                </li>
+                <li>
+                    <img src="/imgs/slide3.jpg" alt="" />
+                </li>
+                <li>
+                    <img src="/imgs/slide4.jpg" alt="" />
+                </li>
+                <li>
+                    <img src="/imgs/slide5.jpg" alt="" />
+                </li>
+            </ul>
+
+            <ul class="slider-dots-area">
+                <li class="liBtn" style="background: #fff"></li>
+                <li class="liBtn"></li>
+                <li class="liBtn"></li>
+                <li class="liBtn"></li>
+                <li class="liBtn"></li>
+            </ul>
+        </div>
+        <script src="./js/jquery-3.6.0.js"></script>
+        <script>
+            $(".liBtn").click(function () {
+                $(this).siblings().css("background", "");
+                $(this).css("background", "#eee");
+
+                len = $(this).index() * -800 + "px";
+
+                $(".wrap-img").css("transform", `translateX(${len})`);
+            });
+        </script>
+    </body>
+</html>
