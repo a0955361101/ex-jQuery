@@ -19,11 +19,11 @@
                 position: relative;
             }
             .wrap-img {
-                width: 600%;
+                width: 700%;
                 padding: 0;
                 list-style: none;
                 display: flex;
-                /* transform: translateX(0px); */
+                transform: translateX(-800px);
                 transition: 0.5s ease;
             }
             .wrap-img li {
@@ -67,6 +67,9 @@
                 position: absolute;
                 top: 50%;
                 right: 1%;
+                color: #fff;
+                text-align: center;
+                line-height: 30px;
             }
             .arrow-l {
                 width: 30px;
@@ -77,12 +80,18 @@
                 position: absolute;
                 top: 50%;
                 left: 1%;
+                color: #fff;
+                text-align: center;
+                line-height: 30px;
             }
         </style>
     </head>
     <body>
         <div class="wrap">
             <ul class="wrap-img">
+                <li>
+                    <img src="/imgs/slide5.jpg" alt="" />
+                </li>
                 <li>
                     <img src="/imgs/slide1.jpg" alt="" />
                 </li>
@@ -111,36 +120,111 @@
                 <li class="liBtn"></li>
             </ul>
 
-            <div class="arrow-r arrow"></div>
-            <div class="arrow-l arrow"></div>
+            <div class="arrow-r arrow">></div>
+            <div class="arrow-l arrow"><</div>
         </div>
         <script src="./js/jquery-3.6.0.js"></script>
         <script>
             $(".liBtn").click(function () {
                 $(this).siblings().css("background", "");
                 $(this).css("background", "#eee");
-
-                len = $(this).index() * -800 + "px";
+                index = $(this).index() + 1;
+                len = index * -800 + "px";
+                // console.log($(this).index());
 
                 $(".wrap-img").css("transform", `translateX(${len})`);
             });
+
             let index = 1;
+
             // 容器最大寬度
             const maxWidth = $(".wrap-img").width();
             // 輪播位移寬度
             const imgWidth = -maxWidth / $("img").length;
+
             $(".arrow-r").click(function () {
-                $(".wrap-img").attr("", "");
-                console.log(this);
-                console.log(imgWidth);
+                console.log($(".wrap-img").offset().left);
+
+                if ($(".wrap-img").offset().left === -4000) {
+                    $(".liBtn").eq(0).siblings().css("background", "");
+                    $(".liBtn").eq(0).css("background", "#eee");
+                }
+
+                if ($(".wrap-img").offset().left === -800) {
+                    $(".liBtn").eq(1).siblings().css("background", "");
+                    $(".liBtn").eq(1).css("background", "#eee");
+                }
+                if ($(".wrap-img").offset().left === -1600) {
+                    $(".liBtn").eq(2).siblings().css("background", "");
+                    $(".liBtn").eq(2).css("background", "#eee");
+                }
+                if ($(".wrap-img").offset().left === -2400) {
+                    $(".liBtn").eq(3).siblings().css("background", "");
+                    $(".liBtn").eq(3).css("background", "#eee");
+                }
+                if ($(".wrap-img").offset().left === -3200) {
+                    $(".liBtn").eq(4).siblings().css("background", "");
+                    $(".liBtn").eq(4).css("background", "#eee");
+                }
+                $(".wrap-img").attr("style", " transition: 0.5s ease");
+                if (index <= $(".liBtn").length) {
+                    index++;
+                }
+
+                // console.log($(this).text());
+
+                $(".wrap-img").css(
+                    "transform",
+                    `translateX(${imgWidth * index + "px"})`
+                );
+                console.log(`${imgWidth * index + "px"}`);
+                if (`${imgWidth * index + "px"}` === "-4800px") {
+                    $(".wrap-img").attr("style", " transition: 0.5s ease");
+                    $(".wrap-img").css("transform", `translateX(-800px)`);
+                    index = 1;
+                    // console.log(`${imgWidth * index + "px"}`);
+                }
+
+                if (index === 5) {
+                    //判斷為最後一張時點擊的瞬間回到第一張
+                    //使用one綁定,不然事件啟動後每次點擊都會觸發
+                    $(".arrow-r").one("mousedown", function () {
+                        $(".wrap-img").attr("style", " transition: 0s ease");
+                        $(".wrap-img").css("transform", `translateX(0px)`);
+                        // console.log(123);
+                    });
+                }
+
+                // console.log(index);
+            });
+
+            $(".arrow-l").click(function () {
+                if (index >= 0) {
+                    index--;
+                }
+
                 $(".wrap-img").css(
                     "transform",
                     `translateX(${imgWidth * index + "px"})`
                 );
 
-                index < $(".liBtn").length ? index++ : (index = 1);
+                if (`${imgWidth * index + "px"}` === "-4000px") {
+                    $(".wrap-img").attr("style", " transition: 0.5s ease");
+                    $(".wrap-img").css("transform", `translateX(-3200px)`);
+                    index = 4;
+                    // console.log("test");
+                }
 
-                console.log(index);
+                if (index === 0) {
+                    $(".arrow-l").one("mousedown", function () {
+                        // console.log(111);
+                        $(".wrap-img").attr("style", " transition: 0s ease");
+                        $(".wrap-img").css("transform", `translateX(-4000px)`);
+                        index = 6;
+                    });
+                }
+                // console.log(`${imgWidth * index + "px"}`);
+                // console.log(index);
             });
         </script>
     </body>
