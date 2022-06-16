@@ -103,18 +103,42 @@
 
         <script src="./js/jquery-3.6.0.js"></script>
         <script>
+            // $(".img-item").click(function () {
+            //     $(this).css("transform", `rotate(360deg)`);
+            // });
+            // $("img").click(function () {
+            //     // console.log(this);
+            //     $("img").css("border", "3px solid transparent");
+            //     $(".border").remove();
+            //     $(".round").remove();
+            //     $(this)
+            //         .before("<div class='border'></div>")
+            //         .after("<div class='round'></div>");
+            //     $(".img-item").attr("style", "");
+            // });
+
+            // $(".img-item").click(function () {
+            // //     $(this).css("transform", `rotate(360deg)`);
+            // // });
+            $("img")
+                .css("border", "3px solid transparent")
+                .before("<div class='border'></div>")
+                .after("<div class='round'></div>");
+
             $(".img-item").click(function () {
-                $(this).css("transform", `rotate(360deg)`);
-            });
-            $("img").click(function () {
                 // console.log(this);
-                $("img").css("border", "3px solid transparent");
-                $(".border").remove();
-                $(".round").remove();
-                $(this)
-                    .before("<div class='border'></div>")
-                    .after("<div class='round'></div>");
                 $(".img-item").attr("style", "");
+                $(this).children(".border , .round").remove();
+                // console.log(
+                //     $(".img-item").children(".border , .round").length !== 8
+                // );
+                if ($(".img-item").children(".border , .round").length !== 4) {
+                    $("img")
+                        .before("<div class='border'></div>")
+                        .after("<div class='round'></div>");
+                    $(this).children(".border , .round").remove();
+                    $(this).css("transform", `rotate(360deg)`);
+                }
             });
         </script>
     </body>
