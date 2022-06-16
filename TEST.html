@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            body {
+                margin: 0;
+                height: 300vh;
+            }
+            .wrap {
+                width: 100%;
+                height: 50px;
+                position: fixed;
+                background-color: #ccc;
+            }
+            .progress {
+                height: 100%;
+
+                background-color: rgb(219, 16, 16);
+            }
+            .fixed {
+                position: fixed;
+                width: 100vw;
+                height: 100vh;
+                top: 50px;
+
+                transition: 1s ease;
+                opacity: 0;
+            }
+            .main {
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+            .bcc {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgb(204, 204, 204);
+                opacity: 0.3;
+            }
+            .content {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 50%;
+                transform: translate(-50%, -50%);
+            }
+            img {
+                width: 100%;
+                height: 100%;
+            }
+            .btn {
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                top: 0;
+                cursor: pointer;
+                z-index: 2;
+            }
+            /* .btn img {
+                cursor: grab;
+            } */
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="progress"></div>
+        </div>
+        <div class="fixed">
+            <div class="main">
+                <div class="bcc"></div>
+                <div class="content">
+                    <img src="./imgs/slide2.jpg" alt="" />
+                    <div class="btn">
+                        <img
+                            src="./c102b50a8f497e337bc178fda36e0610.png"
+                            alt=""
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="./js/jquery-3.6.0.js"></script>
+        <script>
+            $(window).scroll(function () {
+                // console.log($(this).scrollTop());
+                // console.log($("body").height());
+
+                Precenttage =
+                    $(window).scrollTop() /
+                    ($("body").height() - $(window).height());
+                //這邊扣掉window height的原因是他scrolltop是畫面最上端距離body最上端 所以需要扣掉scrollbar的大小
+                // console.log(Precenttage);
+                // !!!!!!這邊要注意跟畫面大小會有關係 所以如果有畫面縮放 最下面不一定會=1
+
+                $(".progress").css("width", `${Precenttage * 100}%`);
+
+                if (Precenttage >= 0.5) {
+                    $(".fixed").css("opacity", "0.8");
+                } else {
+                    $(".fixed").css("opacity", "0");
+                }
+            });
+
+            $(".btn").click(function () {
+                // console.log($(this));
+                $(this).closest(".fixed").remove();
+            });
+        </script>
+    </body>
+</html>

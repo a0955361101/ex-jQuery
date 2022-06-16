@@ -19,7 +19,7 @@
                 position: relative;
             }
             .wrap-img {
-                width: 500%;
+                width: 600%;
                 padding: 0;
                 list-style: none;
                 display: flex;
@@ -98,6 +98,9 @@
                 <li>
                     <img src="/imgs/slide5.jpg" alt="" />
                 </li>
+                <li>
+                    <img src="/imgs/slide1.jpg" alt="" />
+                </li>
             </ul>
 
             <ul class="slider-dots-area">
@@ -122,17 +125,20 @@
                 $(".wrap-img").css("transform", `translateX(${len})`);
             });
             let index = 1;
+            // 容器最大寬度
+            const maxWidth = $(".wrap-img").width();
+            // 輪播位移寬度
+            const imgWidth = -maxWidth / $("img").length;
             $(".arrow-r").click(function () {
+                $(".wrap-img").attr("", "");
                 console.log(this);
-                maxWidth = $(".wrap-img").width();
-                imgWidth = -maxWidth / $(".liBtn").length;
                 console.log(imgWidth);
                 $(".wrap-img").css(
                     "transform",
                     `translateX(${imgWidth * index + "px"})`
                 );
 
-                index++;
+                index < $(".liBtn").length ? index++ : (index = 1);
 
                 console.log(index);
             });
