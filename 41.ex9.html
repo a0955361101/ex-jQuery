@@ -83,6 +83,27 @@
                     move("left", "-=");
                 }
             });
+
+            $("#down").click(function () {
+                console.log("down", $(".box").css("left"));
+                if (parseInt($(".box").css("top")) > 0) {
+                    move("left", "+=");
+                }
+            });
+
+            $(document).keydown(function (e) {
+                console.log(e.keyCode);
+                if (e.keyCode === 68) {
+                    if (parseInt($(".box").css("left")) < wrapWidth) {
+                        move("left", "+=");
+                    }
+                }
+                if (e.keyCode === 65) {
+                    if (parseInt($(".box").css("left")) > 0) {
+                        move("left", "-=");
+                    }
+                }
+            });
         </script>
     </body>
 </html>

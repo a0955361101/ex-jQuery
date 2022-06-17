@@ -145,7 +145,7 @@
             $(".arrow-r").click(function () {
                 console.log($(".wrap-img").offset().left);
 
-                if ($(".wrap-img").offset().left === -4000) {
+                if ($(".wrap-img").offset().left === 0) {
                     $(".liBtn").eq(0).siblings().css("background", "");
                     $(".liBtn").eq(0).css("background", "#eee");
                 }
@@ -166,7 +166,9 @@
                     $(".liBtn").eq(4).siblings().css("background", "");
                     $(".liBtn").eq(4).css("background", "#eee");
                 }
+
                 $(".wrap-img").attr("style", " transition: 0.5s ease");
+
                 if (index <= $(".liBtn").length) {
                     index++;
                 }
@@ -179,17 +181,18 @@
                 );
                 console.log(`${imgWidth * index + "px"}`);
                 if (`${imgWidth * index + "px"}` === "-4800px") {
+                    // console.log(4800);
                     $(".wrap-img").attr("style", " transition: 0.5s ease");
                     $(".wrap-img").css("transform", `translateX(-800px)`);
                     index = 1;
                     // console.log(`${imgWidth * index + "px"}`);
                 }
-
+                console.log(index);
                 if (index === 5) {
                     //判斷為最後一張時點擊的瞬間回到第一張
                     //使用one綁定,不然事件啟動後每次點擊都會觸發
                     $(".arrow-r").one("mousedown", function () {
-                        $(".wrap-img").attr("style", " transition: 0s ease");
+                        $(".wrap-img").attr("style", "transition: 0s ease");
                         $(".wrap-img").css("transform", `translateX(0px)`);
                         // console.log(123);
                     });
@@ -209,10 +212,10 @@
                 );
 
                 if (`${imgWidth * index + "px"}` === "-4000px") {
-                    $(".wrap-img").attr("style", " transition: 0.5s ease");
+                    $(".wrap-img").attr("style", "transition: 0.5s ease");
                     $(".wrap-img").css("transform", `translateX(-3200px)`);
                     index = 4;
-                    // console.log("test");
+                    console.log("-4000px");
                 }
 
                 if (index === 0) {
@@ -220,11 +223,13 @@
                         // console.log(111);
                         $(".wrap-img").attr("style", " transition: 0s ease");
                         $(".wrap-img").css("transform", `translateX(-4000px)`);
+                        console.log(`${imgWidth * index + "px"}`);
                         index = 6;
+                        // console.log(`${imgWidth * index + "px"}`);
                     });
                 }
-                // console.log(`${imgWidth * index + "px"}`);
-                // console.log(index);
+
+                console.log(index);
             });
         </script>
     </body>

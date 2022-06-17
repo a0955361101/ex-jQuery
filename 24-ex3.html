@@ -82,8 +82,11 @@
                         >We'll never share your email with anyone else.</small
                     >
                 </div>
-                <button type="submit" class="btn btn-primary" id="auto">
+                <button type="button" class="btn btn-primary" id="auto">
                     auto
+                </button>
+                <button type="button" class="btn btn-primary" id="pass">
+                    pass
                 </button>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
@@ -96,6 +99,14 @@
                 $("#exampleCheck1").val("Oo20220614oO");
                 $("#exampleInputPassword1").val("12345678");
                 $("#exampleInputEmail1").val("12345678@gmail.com");
+            });
+
+            $("#pass").click(function () {
+                if ($("#exampleInputPassword1")[0].type === "password") {
+                    $("#exampleInputPassword1").attr("type", "text");
+                } else {
+                    $("#exampleInputPassword1").attr("type", "password");
+                }
             });
         </script>
     </body>
