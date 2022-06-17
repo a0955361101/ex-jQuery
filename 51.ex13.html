@@ -126,11 +126,13 @@
                     $(".navbar").addClass("hideNav");
                 } else {
                     console.log(false);
-                    if (navdown < $(".red").height()) {
-                        $(".navbar").removeClass("bg-dark");
-                        $(".navbar").addClass("bg-red");
-                    }
+
                     $(".navbar").removeClass("hideNav");
+                }
+
+                if (navdown > $(".red").height()) {
+                    $(".navbar").removeClass("bg-dark");
+                    $(".navbar").addClass("bg-danger");
                 }
                 navdownup = navdown;
             });

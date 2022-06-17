@@ -64,7 +64,7 @@
             }
 
             .next-page-area {
-                background-color: #afa;
+                /* background-color: #afa; */
                 position: absolute;
                 top: 0;
                 right: 0;
@@ -116,7 +116,7 @@
             </div>
         </div>
 
-        <script src="./js/jquery-3.6.0.min.js"></script>
+        <script src="./js/jquery-3.6.0.js"></script>
         <script>
             // 輪播牆
             // 滑鼠移動到指示點之後，火車要移動到相對應的位置
@@ -132,20 +132,12 @@
             trainMove(nowPage);
             $(".slider-dots-area li").mouseenter(function () {
                 console.log("hi", $(this).index());
-                // const moveX = [
-                //     "0px",
-                //     "-800px",
-                //     "-1600px",
-                //     "-2400px",
-                //     "-3200px",
-                // ];
-                // console.log(moveX[$(this).index()]);
                 nowPage = $(this).index() + 1;
                 trainMove(nowPage);
             });
 
             $(".next-page-area").click(function () {
-                console.log("next-page-area");
+                // console.log("next-page-area");
                 nowPage++;
                 if (nowPage > 5) {
                     trainMoveWithoutTransition(0);
