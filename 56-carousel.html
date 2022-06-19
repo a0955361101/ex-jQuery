@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+            integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+            crossorigin="anonymous"
+        />
+        <style>
+            body {
+                margin: 120px auto 0;
+            }
+
+            .container {
+                width: 250px;
+                height: 200px;
+                position: relative;
+                perspective: 1000px;
+            }
+
+            .carousel {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                transform-style: preserve-3d;
+                /* perspective: 1000px; */
+                transition: transform 1s;
+                /* transform: rotateY(0deg); */
+            }
+
+            .item {
+                display: block;
+                position: absolute;
+                background: #000;
+                width: 250px;
+                height: 200px;
+                line-height: 200px;
+                font-size: 5em;
+                text-align: center;
+                color: #fff;
+                opacity: 0.8;
+                border-radius: 10px;
+            }
+
+            .a {
+                transform: rotateY(0deg) translateZ(250px);
+                background: url(images/background1.jpg) no-repeat;
+                background-size: cover;
+            }
+            .b {
+                transform: rotateY(60deg) translateZ(250px);
+                background: url(images/background2.jpg) no-repeat;
+                background-size: cover;
+            }
+            .c {
+                transform: rotateY(120deg) translateZ(250px);
+                background: url(images/background3.jpg) no-repeat;
+                background-size: cover;
+            }
+            .d {
+                transform: rotateY(180deg) translateZ(250px);
+                background: url(images/background4.jpg) no-repeat;
+                background-size: cover;
+            }
+            .e {
+                transform: rotateY(240deg) translateZ(250px);
+                background: url(images/background5.jpg) no-repeat;
+                background-size: cover;
+            }
+            .f {
+                transform: rotateY(300deg) translateZ(250px);
+                background: url(images/background6.jpg) no-repeat;
+                background-size: cover;
+            }
+
+            .next,
+            .prev {
+                color: #333;
+                position: absolute;
+                top: 50%;
+                padding: 15px;
+                border-radius: 50%;
+                cursor: pointer;
+                background: #ddd;
+                border-top: 1px solid #fff;
+                box-shadow: 1px 1px 8px 1px #333;
+                transition: box-shadow 0.1s, top 0.1s;
+            }
+            .next:hover,
+            .prev:hover {
+                background-color: #333;
+                color: #ddd;
+            }
+
+            .next {
+                right: 10%;
+            }
+            .prev {
+                left: 10%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="carousel">
+                <div class="item a" data-index="0"></div>
+                <div class="item b" data-index="1"></div>
+                <div class="item c" data-index="2"></div>
+                <div class="item d" data-index="3"></div>
+                <div class="item e" data-index="4"></div>
+                <div class="item f" data-index="5"></div>
+            </div>
+        </div>
+
+        <div class="next">Next</div>
+        <div class="prev">Prev</div>
+
+        <script src="./js/jquery-3.6.0.js"></script>
+        <script>
+            let newDeg = 0;
+            let newTranslateZ = 250;
+            let autoIndex = 0;
+            const $next = $(".next");
+            const $prev = $(".prev");
+            const $img = $(".item");
+
+            $next.on("click", { direction: "next" }, rotate);
+            $prev.on("click", { direction: "prev" }, rotate);
+            $img.hover(
+                function (event) {
+                    console.log($(this).data("index"));
+                    index = $(this).data("index");
+                    clearInterval(trainAuto);
+                    $(this).css({
+                        transform: `rotateY(${index * 60}deg) translateZ(${
+                            newTranslateZ * 2 + "px"
+                        })`,
+                        opacity: 1,
+                    });
+                },
+                function () {
+                    trainAutoMove();
+                    $(this).css({
+                        transform: `rotateY(${index * 60}deg) translateZ(${
+                            newTranslateZ + "px"
+                        })`,
+                        opacity: 0.8,
+                    });
+                }
+            );
+
+            function rotate(event) {
+                console.log(event);
+                if (event.data.direction === "next") {
+                    newDeg = newDeg - 60;
+                }
+                if (event.data.direction === "prev") {
+                    newDeg = newDeg + 60;
+                }
+
+                console.log(newDeg);
+                $(".carousel").css("transform", `rotateY(${newDeg + "deg"})`);
+            }
+
+            function trainAutoMove() {
+                trainAuto = setInterval(() => {
+                    autoIndex++;
+
+                    // console.log(autoIndex);
+                    newDeg = 60;
+                    $(".carousel").css({
+                        transform: `rotateY(${autoIndex * newDeg + "deg"})`,
+                    });
+                }, 2000);
+            }
+            trainAutoMove();
+        </script>
+    </body>
+</html>
