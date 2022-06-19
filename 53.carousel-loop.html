@@ -74,6 +74,13 @@
                 justify-content: center;
                 align-items: center;
                 cursor: pointer;
+                opacity: 0.7;
+            }
+            .next-page-area > button {
+                background-color: #333;
+                color: #fff;
+                border-radius: 0 50% 50% 0;
+                cursor: pointer;
             }
 
             .pre-page-area {
@@ -86,7 +93,15 @@
                 justify-content: center;
                 align-items: center;
                 cursor: pointer;
+                opacity: 0.7;
                 /* background-color: #faa; */
+            }
+
+            .pre-page-area > button {
+                background-color: #333;
+                color: #fff;
+                border-radius: 50% 0 0 50%;
+                cursor: pointer;
             }
         </style>
     </head>
@@ -140,8 +155,10 @@
             const carouselWidth = $(".wrap").width();
 
             let nowPage = 1;
+
             // 進入網頁時滑過一張照片讓使用者知道可以滑動
             trainMove(nowPage);
+
             $(".slider-dots-area li").mouseenter(function () {
                 console.log("hi", $(this).index());
                 // 真正的第一張前面有一張第5張圖,所以+1
