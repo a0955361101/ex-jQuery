@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    placeholder="course_sid"
+                    name="course_sid"
+                />
+                <small id="emailHelp" class="form-text text-muted"
+                    >We'll never share your email with anyone else.</small
+                >
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <script>
+            const fd = new FormData();
+
+            fd.append("course_sid", 124);
+            const fd2 = [];
+            fdSid = [fd.get("course_sid")];
+            fd2.push(`${"course_sid"}=${fdSid}`);
+
+            // console.log(fd.get("course_sid"))
+
+            console.log(fd2);
+            fetch("http://localhost:3000/test", {
+                method: "POST",
+                headers: {
+                    "Content-Type":
+                        "application/x-www-form-urlencoded;charset=UTF-8",
+                },
+                body: fd2,
+            })
+                .then((data) => {
+                    return data.json();
+                })
+                .then((d) => {
+                    console.log(d);
+                });
+        </script>
+    </body>
+</html>

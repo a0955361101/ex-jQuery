@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <script src="./js/jquery-3.6.0.js"></script>
+    <script>
+        const memberForm = {
+            sid: 1,
+            account: "ming",
+            password: "ming"
+        };
+
+        const fdArray = [];
+        for(let i in memberForm) {
+            fdArray.push(`${i}=${memberForm[i]}`);
+        }
+        const fd = fdArray.join("&");
+
+
+        fetch('http://localhost:3300/member', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            },
+            body: fd
+        })
+        .then(data => data.json())
+        .then(data => {
+            console.log(data);
+        })
+    </script>
+</body>
+
+</html>
